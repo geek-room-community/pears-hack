@@ -8,7 +8,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="bg-black min-h-screen">
+      <body className=" min-h-screen bg-gradient-to-r from-[#171717] to-[#000000] ">
         <main className="flex">
           <div className="flex-1 p-8">
             {children}

@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Code, Home, Info, Trophy, Users, Mail, Star, BookOpen } from 'lucide-react';
+import { Home, Info, Trophy, Users, Mail, Star } from 'lucide-react';
 
 const NavigationWheel = () => {
   const [rotation, setRotation] = useState(0);
@@ -55,7 +55,7 @@ const NavigationWheel = () => {
                   onClick={() => handleNavClick(index, item.path)}
                   className={`absolute left-4 h-16 w-16 -translate-x-full
                     rounded-full duration-300 hover:scale-110
-                    ${activeIndex === index ? 'border-2 border-[#98ff98] shadow-[0_0_15px_rgba(152,255,152,0.3)]' : ''}`}
+                    ${activeIndex === index ? 'border-2 border-[#B6DD48] shadow-[0_0_15px_rgba(152,255,152,0.3)]' : ''}`}
                   style={{
                     top: '50%',
                     transform: `
@@ -67,8 +67,8 @@ const NavigationWheel = () => {
                   }}
                 >
                   <div className="flex flex-col items-center gap-1">
-                    <Icon className="h-6 w-6 text-[#98ff98]" />
-                    <span className="text-xs text-[#98ff98]">{item.name}</span>
+                    <Icon className="h-6 w-6 text-[#B6DD48]" />
+                    <span className="text-xs text-[#B6DD48]">{item.name}</span>
                   </div>
                 </button>
               );
@@ -77,7 +77,7 @@ const NavigationWheel = () => {
 
           {/* Center Earth implemenation to be done */}
           <div className="absolute right-0 top-1/2 flex h-64 w-64 -translate-y-1/2 translate-x-32 items-center justify-center rounded-full border-2 border-[#98ff98] bg-[#1a1a1a] shadow-[0_0_20px_rgba(152,255,152,0.15)]">
-            <div className="text-2xl text-[#98ff98]">EARTH</div>
+            <div className="text-2xl text-[##B6DD48]">EARTH</div>
           </div>
         </div>
       </div>
