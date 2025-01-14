@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+body,
+html {
+  background: radial-gradient(
+    circle,
+    #171717,
+    #000000
+  ); /* Dark to lighter gray gradient */
+  height: 100vh; /* Make sure the gradient covers the full viewport height */
+  margin: 0; /* Remove default margin */
+  overflow: hidden;
+}
+
+.scroll-content-container {
+  position: absolute;
+  left: 0; /* Align to the left */
+  width: 66.67%; /* 2/3 of the page width */
+  height: 100%; /* Full viewport height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff; /* White text for contrast */
+  overflow-y: hidden;
+  z-index: 1; /* Ensure it's above the background */
+}
+
+.cirdiv {
+  height: 100%;
+  display: flex;
+  margin-right: -25%;
+  justify-content: flex-end; /* Align the CircularDiv to the right */
+  align-items: flex-end; /* Align it to the bottom */
+  position: relative;
+}
+
+.PieChart {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%) rotate(180deg); /* Rotate the disc by 180 degrees */
+  width: 100%;
+  height: 50%; /* Only display top half of the pie chart */
+  z-index: 0; /* Ensure the pie chart is at the bottom layer */
+  transition: transform 1s ease-in-out; /* Smooth rotation transition */
+}
+
+@media (max-width: 768px) {
+  .cirdiv {
+    rotate: 90deg;
+    /* height: 20vw; */
+    /* position: absolute; */
+    margin-top: 130%;
+    /* margin-left: -5%; */
+    margin-right: -45%;
+  }
+
+  .scroll-content-container {
+    top: 0%;
+    width: 100%;
+    height: 80vh;
+  }
+}

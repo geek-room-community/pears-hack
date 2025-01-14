@@ -1,0 +1,18 @@
+.logo-square {
+  position: absolute;
+  width: 50px; /* Adjust square size as needed */
+  height: 50px;
+  background-color: #171717; /* Default color for desktop */
+  border-radius: 4px;
+}
+
+/* For mobile devices, set inner circle color same as outer circle */
+@media only screen and (max-width: 768px) {
+    .inner-circle {
+      background-color: #020202 !important; /* Same as the outer circle color */
+    }
+    .logo-square {
+      background-color: #020202; /* Color for mobile view */
+    }
+  }
+  
