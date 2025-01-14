@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import "./ScrollContent.css";
 import Home from "./ContentPages/Home";
 import Contact from "./ContentPages/Contact";
@@ -24,37 +24,40 @@ const ScrollContent = ({
   const threshold = 600; // Scroll distance threshold for changing index
 
   const pages = [
-    <Home />,
-    <AboutUs />,
-    <Prize />,
-    <Highlights />,
-    <JudgingPanel />,
-    <Team />,
-    <Contact />,
+    <Home key="home" />,
+    <AboutUs key="about-us" />,
+    <Prize key="prize" />,
+    <Highlights key="highlights" />,
+    <JudgingPanel key="judging-panel" />,
+    <Team key="team" />,
+    <Contact key="contact" />,
   ];
 
-  const handleScroll = (e: WheelEvent) => {
-    const delta = e.deltaY; // Get scroll direction and distance
-    const newScrollDistance = scrollDistance + delta;
+  const handleScroll = useCallback(
+    (e: WheelEvent) => {
+      const delta = e.deltaY; // Get scroll direction and distance
+      const newScrollDistance = scrollDistance + delta;
 
-    if (newScrollDistance >= threshold) {
-      // Move to the next index if not at the end
-      if (currentIndex < totalIndexes - 1 && currentIndex < 6) {
-        setCurrentIndex(currentIndex + 1);
-        onIndexChange(currentIndex + 1); // Notify parent
+      if (newScrollDistance >= threshold) {
+        // Move to the next index if not at the end
+        if (currentIndex < totalIndexes - 1 && currentIndex < pages.length - 1) {
+          setCurrentIndex(currentIndex + 1);
+          onIndexChange(currentIndex + 1); // Notify parent
+        }
+        setScrollDistance(0); // Reset scroll distance
+      } else if (newScrollDistance <= -threshold) {
+        // Move to the previous index if not at the beginning
+        if (currentIndex > 0) {
+          setCurrentIndex(currentIndex - 1);
+          onIndexChange(currentIndex - 1); // Notify parent
+        }
+        setScrollDistance(0); // Reset scroll distance
+      } else {
+        setScrollDistance(newScrollDistance); // Accumulate scroll distance
       }
-      setScrollDistance(0); // Reset scroll distance
-    } else if (newScrollDistance <= -threshold) {
-      // Move to the previous index if not at the beginning
-      if (currentIndex > 0) {
-        setCurrentIndex(currentIndex - 1);
-        onIndexChange(currentIndex - 1); // Notify parent
-      }
-      setScrollDistance(0); // Reset scroll distance
-    } else {
-      setScrollDistance(newScrollDistance); // Accumulate scroll distance
-    }
-  };
+    },
+    [scrollDistance, currentIndex, totalIndexes, onIndexChange, pages.length]
+  );
 
   useEffect(() => {
     window.addEventListener("wheel", handleScroll);
@@ -62,7 +65,7 @@ const ScrollContent = ({
     return () => {
       window.removeEventListener("wheel", handleScroll);
     };
-  }, [scrollDistance, currentIndex]);
+  }, [handleScroll]);
 
   return (
     <>
